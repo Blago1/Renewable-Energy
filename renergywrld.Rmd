@@ -1,0 +1,39 @@
+---
+title: "Global Renewable Share in Primary Energy (1990-2017)"
+author: Lewis Blagogie
+output: html_document
+fig_mobile: TRUE
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(flexdashboard)
+library(tidyverse)
+library(billboarder)
+library(readr)
+World_data <- read_csv("C:/Users/Lewis/Downloads/World data.csv")
+View(World_data)
+
+e <- World_data %>% select(year, value)
+
+
+
+
+
+```
+
+## 
+
+
+```{r, echo=FALSE, message=FALSE}
+
+set_theme("billboard")
+
+billboarder() %>% bb_linechart(data = e, x = "year", y = "value", type = "spline", alpha = 20) %>%  bb_x_axis(tick = list(format = "%Y-%m", fit = FALSE)) %>% 
+  bb_x_grid(show = TRUE) %>% bb_y_grid(show = TRUE) %>% bb_x_axis(label = list(text = "Year", position = "center")) %>% bb_y_axis(label = list(text = "Value %", position = "middle")) %>% bb_legend(position = "right") %>% bb_zoom(enabled = list (type = "drag"), resetButton = list(text = "unzoom")) %>% bb_title("Global Renewable Share in Primary Energy (1990-2017)", position = "center")
+
+
+```
+
