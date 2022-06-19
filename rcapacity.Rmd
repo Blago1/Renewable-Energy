@@ -1,0 +1,31 @@
+---
+title: "Global Renewable Energy Capacity (2000-2020)"
+author: "Lewis Blagogie"
+date: "6/18/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(billboarder)
+library(readr)
+World_data_1_ <- read_csv("C:/Users/Lewis/Downloads/World data (1).csv")
+View(World_data_1_)
+
+
+```
+
+## 
+
+
+
+```{r}
+g <- World_data_1_ %>% select(year, value)
+
+billboarder() %>% bb_linechart(data = g, x = "year", y = "value", type = "spline") %>%  bb_x_axis(tick = list(format = "%Y-%m", fit = FALSE)) %>% 
+  bb_x_grid(show = TRUE) %>% bb_y_grid(show = TRUE) %>% bb_x_axis(label = list(text = "Year", position = "center")) %>% bb_y_axis(label = list(text = "Value GW", position = "middle")) %>% bb_legend(position = "right") %>% bb_zoom(enabled = list (type = "drag"), resetButton = list(text = "unzoom")) %>% bb_title("Global Renewable Energy Capacity (2000-2020)", position = "center")
+
+
+```
+
